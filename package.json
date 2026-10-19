@@ -1,0 +1,11 @@
+{
+  "name": "vigia-price-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vigia — monitorização de preços e alertas",
+  "engines": { "node": ">=24.15.0" },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  }
+}

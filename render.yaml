@@ -1,0 +1,35 @@
+# Vigia app service — SQLite needs a persistent disk in production.
+services:
+  - type: web
+    name: vigia
+    runtime: node
+    plan: starter
+    buildCommand: echo "No external packages to install"
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    disk:
+      name: vigia-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 24.19.0
+      - key: DATA_DIR
+        value: /var/data
+      - key: STORE_ALLOWLIST
+        value: amazon.es,fnac.pt,nike.com,elcorteingles.es,apple.com,ryanair.com
+      - key: CRAWLER_USER_AGENT
+        value: VigiaPriceMonitor/1.0
+      - key: PUBLIC_ORIGIN
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: DISCORD_WEBHOOK_URL
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+
